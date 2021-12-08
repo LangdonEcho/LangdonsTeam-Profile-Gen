@@ -116,7 +116,7 @@ const engineerQuestions = () => {
                     internQuestions();
                     break;
                 default: 
-                writeToFile('src/generateTeam.js', generateTeam(team))
+                writeToFile('dist/index.html', generateTeam(team))
             }
         });
 } 
@@ -170,15 +170,15 @@ const engineerQuestions = () => {
                     internQuestions();
                     break;
                 default:
-                    writeToFile('dist/index.html', generateTeam(team))
+                    writeFile('dist/index.html', generateTeam(team))
             }
         })
     }
     
     managerQuestions();
-
-const writeToFile = data => {
-        fs.writeToFile('./src/generateTeam.js', data, err => {
+ 
+    const writeFile = (filename, data) => {
+        fs.writeFile(filename, data, err => {
             // if there is an error 
             if (err) {
                 console.log(err);
@@ -189,3 +189,4 @@ const writeToFile = data => {
             }
         })
 };
+
