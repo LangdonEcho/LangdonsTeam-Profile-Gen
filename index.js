@@ -49,7 +49,23 @@ const managerQuestions = () => {
             choices: ['Engineer', 'Intern', 'stop adding team members'],
         }
     ])
+    .then((managerAnswers) => {
     
+        const manager = new Manager(managerAnswers.id, managerAnswers.name, managerAnswers.email, managerAnswers.officeNumber)
+        team.push(manager)
+        switch(managerAnswers.addMember) {
+            case 'Engineer':
+                engineerQuestions();
+                break;
+            case 'Intern':
+                internQuestions();
+                break;
+            default: 
+            writeToFile('dist/index.html', generateTeam(team))
+        }
+    });
+};
+
 
     const engineerQuestions = () => {
         inquirer.prompt([
@@ -95,28 +111,52 @@ const managerQuestions = () => {
             }
         })
     };
+    
+        .then((engineerAnswers) => {
+            const engineer = new Engineer(engineerAnswers.id, engineerAnswers.name, engineerAnswers.email, engineerAnswers.github)
+            team.push(engineer)
+            switch(engineerAnswers.addMember) {
+                case 'Engineer':
+                    engineerQuestions();
+                    break;
+                case 'Intern':
+                    internQuestions();
+                    break;
+                default: 
+                writeToFile('dist/index.html', generateTeam(team))
+            }
+        });
 
     const internQuestions = () => {
         inquirer.prompt([
             {
                 type: 'input',
                 name: 'name',
-                message: 'What is the intern\'s name?'
+                message: 'please provide the interns name?'
             },
             {
                 type: 'input',
                 name: 'id',
-                message: 'What is the intern\'s id?'
+                message: 'please provide the interns id?'
             },
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is the intern\'s email address?'
+                message: 'please provide the interns email address?',
+                validate: email => {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                    if (valid) {
+                        return true;
+                    } else {
+                        console.log ('Please enter an email!')
+                        return false; 
+                    }
+                }            
             },
             {
                 type: 'input',
                 name: 'school',
-                message: 'What is the intern\'s school?'
+                message: 'please provide the interns school?'
             },
             {
                 type: 'list',
