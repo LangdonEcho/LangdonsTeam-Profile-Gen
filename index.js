@@ -3,8 +3,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 const fs = require('fs');
-const generateTeam = require('./src/generateTeam');
-const generateHTML = require('./src/generate.html');
+const generateTeam = require('./src/generateTeam.js');
 
 // Employee array
 const employees = [];
@@ -104,38 +103,23 @@ const engineerQuestions = () => {
             message: 'What type of team member would you like to add next?',
             choices: [ 'Intern','Engineer','stop adding team members'],
         }
-    ]) 
-}
-        .then((engineerAnswers) => {
-            const engineer = new Engineer(engineerAnswers.id, engineerAnswers.name, engineerAnswers.email, engineerAnswers.github)
-            team.push(engineer)
-            switch(engineerAnswers.addMember) {
-                case 'Engineer':
-                    engineerQuestions();
-                    break;
-                case 'Intern':
-                    internQuestions();
-                    break;
-                default: 
-                writeToFile('dist/index.html', generateTeam(team))
-            }
-        });
-    
-        .then((engineerAnswers) => {
-            const engineer = new Engineer(engineerAnswers.id, engineerAnswers.name, engineerAnswers.email, engineerAnswers.github)
-            team.push(engineer)
-            switch(engineerAnswers.addMember) {
-                case 'Engineer':
-                    engineerQuestions();
-                    break;
-                case 'Intern':
-                    internQuestions();
-                    break;
-                default: 
-                writeToFile('dist/index.html', generateTeam(team))
-            }
-        });
+    ])
 
+         .then((engineerAnswers) => {
+            const engineer = new Engineer(engineerAnswers.id, engineerAnswers.name, engineerAnswers.email, engineerAnswers.github)
+            team.push(engineer)
+            switch(engineerAnswers.addMember) {
+                case 'Engineer':
+                    engineerQuestions();
+                    break;
+                case 'Intern':
+                    internQuestions();
+                    break;
+                default: 
+                writeToFile('src/generateTeam.js', generateTeam(team))
+            }
+        });
+} 
     const internQuestions = () => {
         inquirer.prompt([
             {
@@ -194,7 +178,7 @@ const engineerQuestions = () => {
     managerQuestions();
 
 const writeToFile = data => {
-        fs.writeToFile('./dist/index.html', data, err => {
+        fs.writeToFile('./src/generateTeam.js', data, err => {
             // if there is an error 
             if (err) {
                 console.log(err);
