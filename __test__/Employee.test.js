@@ -9,10 +9,10 @@ test('creates an employee object', () => {
 describe('Employee Class', () => {
     describe('Initialization', () => {
         it('Should create an object with an id and name', () => {
-            const employee = new Employee(123, 'Tim')
+            const employee = new Employee(abc, 'John')
 
-            expect(employee.id).toEqual(123);
-            expect(employee.name).toEqual('Tim');
+            expect(employee.id).toEqual(abc);
+            expect(employee.name).toEqual('John');
         });
     });
 });
