@@ -65,6 +65,7 @@ const managerQuestions = () => {
     });
 };
 
+// engineering questions put into an array
 
 const engineerQuestions = () => {
     inquirer.prompt([
@@ -120,6 +121,8 @@ const engineerQuestions = () => {
             }
         });
 } 
+
+// intern array questions
     const internQuestions = () => {
         inquirer.prompt([
             {
@@ -159,6 +162,7 @@ const engineerQuestions = () => {
             }
         ])
 
+
         .then((internAnswers) => {
             const intern = new Intern(internAnswers.id, internAnswers.name, internAnswers.email, internAnswers.school)
             team.push(intern)
@@ -177,6 +181,8 @@ const engineerQuestions = () => {
     
     managerQuestions();
  
+// converting javascript to html file using fs
+
     const writeFile = (filename, data) => {
         fs.writeFile(filename, data, err => {
             // if there is an error 
