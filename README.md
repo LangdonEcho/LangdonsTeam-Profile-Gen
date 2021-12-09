@@ -32,5 +32,6 @@ This application is covered by the MIT license.
 ✏️ npm jest<br />
 <br />
 
+Video Link: https://watch.screencastify.com/v/WVq6lrBVDe0hlr8ziyVl
 
 This README was generated with ❤️ by (https://github.com/LangdonEcho/LangdonsReadME-Generator)
